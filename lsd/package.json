@@ -1,0 +1,32 @@
+{
+  "name": "feather-mock",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/index.mjs"
+  },
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build-fast": "tsup src/index.ts --format cjs,esm",
+    "build": "pnpm run build-fast -- --dts-resolve",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "prepublishOnly": "pnpm run build"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/lodash": "^4.14.195",
+    "@vitest/coverage-c8": "^0.31.1",
+    "prettier": "2.8.4",
+    "tsup": "6.6.3",
+    "typescript": "4.9.5",
+    "vitest": "0.31.1"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.7",
+    "lodash": "^4.17.21"
+  }
+}
