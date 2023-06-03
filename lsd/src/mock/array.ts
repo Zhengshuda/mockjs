@@ -1,4 +1,4 @@
-import mock from "./index";
+import { mock } from "./index";
 import Random from "../random";
 import { ARRAY_MAX_COUNT, ARRAY_MIN_COUNT } from "../utils/const";
 

@@ -1,6 +1,7 @@
 import { it, expect } from 'vitest';
 import FMock from '../src/index';
+const Mock = FMock.mock;
 
 it('integer', () => {
-  expect(FMock.Random.integer).toBeInstanceOf(Function);
+  expect(Mock('@integer')).toBeTypeOf('number');
 });

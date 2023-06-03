@@ -5,7 +5,6 @@ const mock = FMock.mock;
 
 // function type
 it('array type', () => {
-  expect(mock).toBeTypeOf('function');
   expect(mock([1, 2, 3])).toBeInstanceOf(Array);
 });
 
@@ -52,5 +51,4 @@ it('array wrong params', () => {
   expect(res3).toEqual([
     expect.stringMatching(/^1[34578]\d{9}$/)
   ])
-
 });
