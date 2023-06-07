@@ -1,9 +1,8 @@
 import { it, expect } from 'vitest';
 import FMock from '../src/index';
-const Random = FMock.Random;
+const Mock = FMock.mock;
 
 // function type
 it('boolean type', () => {
-  expect(Random.boolean).toBeTypeOf('function');
-  expect(Random.boolean()).toBeTypeOf('boolean');
+  expect(Mock('@boolean')).toBeTypeOf('boolean');
 });

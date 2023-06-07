@@ -1,4 +1,4 @@
-export function getType(obj) {
+export function getType(obj: any) {
   // Array
   // Function（它的 typeof 返回 "function"）
   // Error
@@ -7,7 +7,11 @@ export function getType(obj) {
   // String
   // Date
   // RegExp
-  return (obj === null || obj === undefined) ? String(obj) : Object.prototype.toString.call(obj).match(/\[object (\w+)\]/)[1].toLowerCase();
+  if(obj === null || obj === undefined) {
+    return String(obj);
+  }
+  const res = Object.prototype.toString.call(obj).match(/\[object (\w+)\]/) || [];
+  return res[1]?.toLowerCase();
 }
 
 /**
@@ -27,17 +31,21 @@ export const _parseOptions = (key: string, value: any) => {
   }
 }
 
+interface parseRuleInterface {
+  [key: string]: string,
+};
 /**
  * 将rule 字符串解析成参数对象
  * @param str rule 字符串（url 传参形式 a=xxx&b=xxx）
  * @returns 参数
  */
-export const _parseRule = (str: string = ''): object => {
-  const res = {};
+export const _parseRule = (str: string = ''): parseRuleInterface => {
+  const res: parseRuleInterface = {};
   const arr = str.split('&');
   arr.forEach(item => {
     const paramArr = item.split('=');
-    res[paramArr[0]] = paramArr[1];
+    const key = paramArr[0];
+    res[key] = paramArr[1];
   })
   return res;
 }

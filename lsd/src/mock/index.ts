@@ -1,8 +1,9 @@
 import Random from '../random';
 import { getType, _parseOptions } from '../utils/utils';
 import _dealArray from './array';
+import _ from 'lodash';
 
-const mock = (options: any): any => {
+export const mock = (options: any): any => {
   const type = getType(options);
   let res;
   switch (type) {
@@ -29,6 +30,29 @@ const mock = (options: any): any => {
   return res;
 }
 
+interface defineOption {
+  [key: string]: Function
+}
+/**
+* 注册自定义函数
+* @param option 键值对形式，值必须为函数
+* @returns void
+*/
+export const define = (option: defineOption): void => {
+ if(!_.isPlainObject(option)) {
+   throw new Error(`Wrong option!`);
+ }
+ Object.keys(option).forEach(key => {
+   if(Random[key]) {
+     throw new Error(`${key} has already been defined!`);
+   }
+   if(!_.isFunction(option[key])) {
+     throw new Error(`Definition for ${key} is not a funciton!`);
+   }
+   Random[key] = option[key];
+ })
+}
+
 /**
  * 处理 String 传入
  * @param str 传入的字符串
@@ -37,17 +61,27 @@ const mock = (options: any): any => {
  */
 const _dealString = (str: string, opt: object = {}) => {
   if(str.startsWith('@')) {
-    const mark = str.substring(1);
-    if(Random[mark]) {
-      return Random[mark](opt);
+    const opt = _parseOptions(str.substring(1), '');
+    const { name } = opt;
+    if(Random[name]) {
+      return Random[name](opt);
     }
   }
   return str;
 }
 
-// todo 写 API
-const _dealObject = (options: object) => {
-  const res = {};
+interface dealObjectOption {
+  [key: string]: any
+}
+/**
+ * 处理对象传入
+ * @param options 选项
+ * @returns result
+ */
+const _dealObject = (options: dealObjectOption) => {
+  const res: {
+    [name: string]: string
+  } = {};
   Object.keys(options).forEach(key => {
     const val = options[key];
     const opt = _parseOptions(key, val);
@@ -76,5 +110,3 @@ const _dealObject = (options: object) => {
   })
   return res;
 }
-
-export default mock;

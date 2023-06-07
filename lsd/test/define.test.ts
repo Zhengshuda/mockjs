@@ -1,34 +1,33 @@
 import { it, expect } from 'vitest';
 import FMock from '../src/index';
-const Random = FMock.Random;
 
 // function type
-it('Random.define type', () => {
-  expect(Random.define).toBeTypeOf('function');
+it('FMock.define type', () => {
+  expect(FMock.define).toBeTypeOf('function');
 });
 
 // test params
-it('Random.define test', () => {
-  Random.define({
+it('FMock.define test', () => {
+  FMock.define({
     testDefine: function() {
       return 'testDefine';
     }
   });
-  expect(Random.testDefine()).toBe('testDefine');
+  expect(FMock.mock('@testDefine')).toBe('testDefine');
 });
 
 // test wrong params
-it('Random.define test', () => {
+it('FMock.define test wrong params', () => {
 
-  expect(() => Random.define([1, 2, 3])).toThrowError('Wrong option!');
+  expect(() => FMock.define([1, 2, 3])).toThrowError('Wrong option!');
   
-  expect(() => Random.define({
+  expect(() => FMock.define({
     string: function() {
       return 'testDefine';
     }
   })).toThrowError('already been defined!');
 
-  expect(() => Random.define({
+  expect(() => FMock.define({
     testDefine1: 'aaa'
   })).toThrowError('is not a funciton!');
 });
