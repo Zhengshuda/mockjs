@@ -1,12 +1,12 @@
-import parser from './parser';
+import tempalte from './tempalte';
 
-export default function json2Mock(json: Record<string, any>) {
+export default function json2mock(json: Record<string, any>) {
   const ret: Record<string, any> = {};
   for (const [key, value] of Object.entries(json)) {
     if (typeof value === 'string') {
-      ret[key] = parser(value);
+      ret[key] = tempalte(value);
     } else if (String(value) === '[object Object]') {
-      ret[key] = json2Mock(value);
+      ret[key] = json2mock(value);
     } else {
       ret[key] = value;
     }

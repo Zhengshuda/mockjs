@@ -9,9 +9,17 @@ import string from './string';
  * @param dmax 小数位大长度
  * @returns
  */
-export default function float(min?: number, max?: number, dmin = 0, dmax = 15) {
+export default function float(min = -1000, max = 1000, dmin = 2, dmax = 15) {
+  if (min > max) {
+    throw new Error(`[float]: min cannot be greater than the max`);
+  }
+
+  if (dmin > dmax) {
+    throw new Error(`[float]: dmin cannot be greater than the dmax`);
+  }
+
   // 小数末位不能为 0
-  let ret = int(min, max) + '.' + string(dmin, dmax - 1, '0123456789') + int(1, 9);
+  let ret = int(min + 1, max - 1) + '.' + string(dmin, dmax - 1, '0123456789') + int(1, 9);
 
   return parseFloat(ret);
 }

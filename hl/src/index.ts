@@ -1,15 +1,18 @@
-import custom from './custom';
 import random from './random';
-import ext from './ext';
-import parser from './parser';
-import json2Mock from './json2mock';
+import template from './parser/tempalte';
+import json2mock from './parser/json2mock';
 
-ext.setup();
+function extend(key: string, func: (...arg: any) => any) {
+  if (key in random) {
+    console.warn(`[extend]: ${key} is defined repeatedly`);
+  }
+  random[key] = func;
+};
 
 export default {
-  custom,
   random,
-  parser,
-  json2Mock,
+  template,
+  json2mock,
+  extend,
   version: '0.1',
 };
