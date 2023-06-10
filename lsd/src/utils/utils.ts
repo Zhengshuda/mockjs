@@ -10,8 +10,8 @@ export function getType(obj: any) {
   if(obj === null || obj === undefined) {
     return String(obj);
   }
-  const res = Object.prototype.toString.call(obj).match(/\[object (\w+)\]/) || [];
-  return res[1]?.toLowerCase();
+  let res = Object.prototype.toString.call(obj).match(/\[object (\w+)\]/);
+  return (res as RegExpMatchArray)[1]?.toLowerCase();
 }
 
 /**

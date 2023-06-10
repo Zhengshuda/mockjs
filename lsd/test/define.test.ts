@@ -1,33 +1,54 @@
-import { it, expect } from 'vitest';
+import { it, expect, describe } from 'vitest';
 import FMock from '../src/index';
+FMock.setEnv('NODE_ENV', 'development');
 
-// function type
-it('FMock.define type', () => {
-  expect(FMock.define).toBeTypeOf('function');
+describe('define func type', () => {
+  it('FMock.define type', () => {
+    expect(FMock.define).toBeTypeOf('function');
+  });  
 });
 
-// test params
-it('FMock.define test', () => {
-  FMock.define({
-    testDefine: function() {
-      return 'testDefine';
-    }
+describe('test define param', () => {
+  it('注册一个方法', () => {
+    function f1 () { return '111' }
+    FMock.define({
+      testDefine: f1
+    });
+    expect(FMock.mock('@testDefine')).toBe(f1());
   });
-  expect(FMock.mock('@testDefine')).toBe('testDefine');
+
+  it('注册多个方法', () => {
+    function f1 () { return '111' }
+    function f2 () { return '222' }
+    FMock.define({
+      f1: f1,
+      f2: f2
+    });
+    expect(FMock.mock('@f1')).toBe(f1());
+    expect(FMock.mock('@f2')).toBe(f2());
+  });
 });
 
-// test wrong params
-it('FMock.define test wrong params', () => {
+describe('test wrong params', () => { 
+  it('test wrong params type', () => {
+    const p1 = [1, 2, 3];
+    expect(() => FMock.define(p1)).toThrowError('Wrong option!');
+    const p2 = '123';
+    expect(() => FMock.define(p2)).toThrowError('Wrong option!');
+  });
 
-  expect(() => FMock.define([1, 2, 3])).toThrowError('Wrong option!');
-  
-  expect(() => FMock.define({
-    string: function() {
-      return 'testDefine';
-    }
-  })).toThrowError('already been defined!');
+  it('define 一个已注册的函数', () => {
+    expect(() => FMock.define({
+      string: function() {
+        return 'testDefine';
+      }
+    })).toThrowError('already been defined!');
+  });
 
-  expect(() => FMock.define({
-    testDefine1: 'aaa'
-  })).toThrowError('is not a funciton!');
-});
+  it('测试传入对象值类型错误', () => {
+    expect(() => FMock.define({
+      testDefine1: 'aaa'
+    })).toThrowError('is not a funciton!');
+  });
+ })
+

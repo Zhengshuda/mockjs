@@ -3,8 +3,8 @@ import _ from 'lodash';
 import dayjs from 'dayjs';
 
 interface integerOption {
-  min?: number; // 最短长度
-  max?: number; // 最大长度
+  min?: string | number; // 最短长度
+  max?: string | number; // 最大长度
 }
 
 /**
@@ -12,11 +12,17 @@ interface integerOption {
  * @param min 最小值
  * @param max 最大值
  */
-const integer = (opt?: integerOption): number => {
-  const { min, max } = opt || {};
-  const minVal = typeof min !== 'undefined' ? parseInt(min.toString(), 10) : Number.MIN_SAFE_INTEGER;
-  const maxVal = typeof max !== 'undefined' ? parseInt(max.toString(), 10) : Number.MAX_SAFE_INTEGER;
-  return Math.round(Math.random() * (maxVal - minVal) + minVal);
+const integer = (opt: integerOption): number => {
+  let { min = Number.MIN_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER } = opt;
+  min = parseInt(String(min), 10);
+  max = parseInt(String(max), 10);
+  if(min < Number.MIN_SAFE_INTEGER) min = Number.MIN_SAFE_INTEGER;
+  if(max > Number.MAX_SAFE_INTEGER) max = Number.MAX_SAFE_INTEGER;
+  if(min > max) {
+    min = Number.MIN_SAFE_INTEGER;
+    max = Number.MAX_SAFE_INTEGER;
+  }
+  return Math.round(Math.random() * (max - min) + min);
 };
 
 /**
@@ -32,7 +38,7 @@ const char = () => {
 interface stringOption {
   min?: number | string; // 最短长度
   max?: number | string; // 最大长度
-  len?: number | string; // 固定长度（优先级高）
+  len?: number; // 固定长度（优先级高）
 }
 
 /**
@@ -40,8 +46,8 @@ interface stringOption {
  * @param opt options
  * @returns string
  */
-const string = (opt?: stringOption): string => {
-  const strLen = _getLength(opt || {});
+const string = (opt: stringOption): string => {
+  const strLen = _getLength(opt);
   let res = '';
   for (let i = 0; i < strLen; i++) {
     res += char();
@@ -55,21 +61,27 @@ const string = (opt?: stringOption): string => {
  * @returns length
  */
 const _getLength = (opt: stringOption): number => {
-  let { min = STRING_MIN_LEN, max = STRING_MAX_LEN, len } = opt;
-  min = parseInt('' + min, 10);
-  max = parseInt('' + max, 10);
-  len = parseInt('' + len, 10);
+  let { min = STRING_MIN_LEN, max = STRING_MAX_LEN, len = '' } = opt;
+  len = parseInt(len.toString(), 10);
+  
   // 校验长度
-  if ( typeof len !== 'undefined'
-    && _.isInteger(len)
-    && len >= STRING_MIN_LEN
-    && len <= STRING_MAX_LEN
-  ) {
-    return len;
+  if ( typeof len !== 'undefined' && _.isInteger(len)) {
+    if(len >= STRING_MIN_LEN && len <= STRING_MAX_LEN) {
+      return len;
+    } else {
+      console.error('len值无效');
+    }
   }
 
+  min = parseInt('' + min, 10);
+  max = parseInt('' + max, 10);
   if (!_.isInteger(max) || !max || max > STRING_MAX_LEN) max = STRING_MAX_LEN;
   if (!_.isInteger(min) || !min || min < STRING_MIN_LEN) min = STRING_MIN_LEN;
+  if (max < min) {
+    min = STRING_MIN_LEN;
+    max = STRING_MAX_LEN;
+    console.error('传入的参数非法：min 大于 max，使用默认值');
+  }
   return integer({min, max});
 }
 

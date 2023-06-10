@@ -1,0 +1,4 @@
+{
+  "integer|min=4&max=10": "@integer",
+  "array2|count=2": ["1", 2]
+}

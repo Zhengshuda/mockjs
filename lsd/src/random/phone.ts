@@ -1,3 +1,4 @@
+import logger from "src/utils/logger";
 import Random from ".";
 
 const phone = function() {
@@ -8,6 +9,7 @@ const phone = function() {
   for (let i = 0; i < 9; i++) {
     res += Random.integer({ min: 0, max: 9 });
   }
+  logger('生成手机号：' + res);
   return res;
 }
 

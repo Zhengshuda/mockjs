@@ -6,7 +6,6 @@ import {
   date,
   time,
 } from './basic';
-import email from './email';
 import phone from './phone';
 
 interface RandomInterface {
@@ -19,7 +18,6 @@ const Random: RandomInterface = {
   boolean,
   date,
   time,
-  email,
   phone
 };
 
