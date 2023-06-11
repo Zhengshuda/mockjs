@@ -1,10 +1,10 @@
+import { getString } from './string/index'
+import { getNum } from './number/index'
+export const foo:string = 'foo'
+
 interface dateFormat {
     getDateFormat: "yyyy-MM-dd" | "yyyy/MM/dd"
     getTimeFormat: "HH:mm:ss" | "HH/mm/ss"
-}
-
-interface strInterFace {
-    input: 'A-Z' | 'a-z' | '0-9'
 }
 
 interface MockObj {
@@ -22,25 +22,6 @@ interface MockObj {
         dataObj: MockObj
         len: number
     }
-}
-
-// 创建随机字符串
-function createRandomChar(c: strInterFace["input"]) {
-    switch (c) {
-        case 'A-Z':
-            return String.fromCharCode(Math.trunc(Math.random() * 25) + 65);
-        case 'a-z':
-            return String.fromCharCode(Math.trunc(Math.random() * 25) + 97);
-        case '0-9':
-        default:
-            return String.fromCharCode(Math.trunc(Math.random() * 10) + 48);
-    }
-};
-
-function crateRandomString(length: number, val: strInterFace["input"]) {
-    let str = '';
-    for (let i = 0; i < length; i++) str += createRandomChar(val);
-    return str;
 }
 
 // 随机身份证号码
@@ -126,9 +107,9 @@ function formatDate(date: Date, format: dateFormat['getDateFormat']) {
 // 生成随机时间
 
 function randomTime(format: dateFormat['getTimeFormat']) {
-    const hourRandom =  Math.round(Math.random() * 24)
-    const minutesRandom =  Math.round(Math.random() * 60)
-    const secondsRandom =  Math.round(Math.random() * 60)
+    const hourRandom = Math.round(Math.random() * 24)
+    const minutesRandom = Math.round(Math.random() * 60)
+    const secondsRandom = Math.round(Math.random() * 60)
     let hour: string | number = hourRandom < 10 ? '0' + hourRandom : '' + hourRandom;
     let minutes: string | number = minutesRandom < 10 ? '0' + minutesRandom : '' + minutesRandom;
     let seconds: string | number = secondsRandom < 10 ? '0' + secondsRandom : '' + secondsRandom;
@@ -139,11 +120,11 @@ function randomTime(format: dateFormat['getTimeFormat']) {
 }
 
 class mockDataClass {
-    getStr(num: number, val: strInterFace["input"]) {
-        return crateRandomString(num, val);
+    getStr(val: string) {
+        return getString(val)
     }
-    getNum(num: number) {
-        return parseInt(crateRandomString(num, '0-9'));
+    getNum(val: string) {
+        return getNum(val)
     }
     getBoolen() {
         return Math.round(Math.random()) === 0 ? false : true;
@@ -188,8 +169,8 @@ class mockDataClass {
                     obj['phone'] = this.getPhone()
                     continue
                 case 'array':
-                    if(val['array']) {
-                        obj['array'] = this.getArr(val['array']['dataObj'], val['array']['len']) 
+                    if (val['array']) {
+                        obj['array'] = this.getArr(val['array']['dataObj'], val['array']['len'])
                     }
                     continue
             }
@@ -233,6 +214,11 @@ const obj = {
 } as MockObj
 
 
-const mockData = new mockDataClass()
+// const mockData = new mockDataClass()
 
-console.log(JSON.stringify(mockData.getObj(obj), null, 4))
+// console.log(JSON.stringify(mockData.getObj(obj), null, 4))
+
+// const res = getString('@string("upper", 2)')
+const num = getNum('@integer(1, 9)')
+
+console.log(num, 'num-----')
