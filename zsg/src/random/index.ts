@@ -1,18 +1,21 @@
 import array from './array';
 import bool from './bool';
 import char from './char';
-import int from './int';
-import string from './string';
+import color from './color';
 import {
     randomDate,
     date,
     time,
     dateTime,
 } from './date';
-import phone from './phone';
+import float from './float';
 import idCard from './idCard';
+import int from './int';
+import object from './object';
+import phone from './phone';
+import string from './string';
 
-export default {
+export {
     array,
     bool,
     char,
@@ -22,6 +25,9 @@ export default {
     date,
     time,
     dateTime,
+    float,
     phone,
     idCard,
+    color,
+    object,
 };
