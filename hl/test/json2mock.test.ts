@@ -10,7 +10,7 @@ describe('json 字符解析为 mock', () => {
           "wight": "@int(0,180)",
           "height": "@float(0,180)"
       },
-      "birthday": "@datetime(yyyy/MM/dd)",
+      "birthday": "@datetime(YYYY/MM/DD)",
       "a": "b",
       "c": [
           "d"

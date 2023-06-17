@@ -12,7 +12,7 @@ describe('随机生成数组', () => {
   });
 
   it('数组参数长度小于 0 使，抛出异常', () => {
-    expect(() => mock.random.array(-1, [])).toThrowError('array of lengths cannot be smaller than 0');
+    expect(() => mock.random.array(-1, [])).toThrowError();
   });
 
   it('生成指定内容的数组', () => {

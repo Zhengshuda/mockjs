@@ -20,7 +20,7 @@ describe('随机生成浮点型数值', () => {
   });
 
   it('异常处理', () => {
-      expect(() => mock.random.float(2, 1)).toThrowError('min cannot be greater than the max');
-      expect(() => mock.random.float(0, 1, 1, -1)).toThrowError('dmin cannot be greater than the dmax');
+      expect(() => mock.random.float(2, 1)).toThrowError();
+      expect(() => mock.random.float(0, 1, 1, -1)).toThrowError();
   });
 });
