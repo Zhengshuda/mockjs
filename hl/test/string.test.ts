@@ -1,4 +1,4 @@
-import mock from '../../src';
+import mock from '../src';
 import { describe, it, expect } from 'vitest';
 
 describe('随机生成字符串', () => {
