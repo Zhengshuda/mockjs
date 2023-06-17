@@ -1,4 +1,4 @@
-import { object } from '../../src';
+import Mock from '../../src';
 import { describe, expect, it } from 'vitest';
 
 // 测试生成对象是否符合预期
@@ -15,7 +15,7 @@ describe('object 函数测试', () => {
         const minLength = 3;
         const maxLength = 5;
 
-        const result = object(generator, minLength, maxLength);
+        const result = Mock.object(generator, minLength, maxLength);
 
         // 验证生成对象的长度是否在[minLength, maxLength]范围内
         expect(Object.keys(result).length).toBeGreaterThanOrEqual(minLength);
@@ -27,16 +27,19 @@ describe('object 函数测试', () => {
         const generator = {
             level1: {
                 level2: {
-                    level3: 'string'
+                    level3: true
                 }
             }
         };
 
-        const result = object(generator);
+        const result = Mock.object(generator);
 
         // 验证生成对象的嵌套深度是否符合预期
         expect(typeof result.level1).toBe('object');
         expect(typeof (result.level1 as any).level2).toBe('object');
-        expect(typeof ((result.level1 as any).level2 as any).level3).toBe('string');
+        expect(typeof ((result.level1 as any).level2 as any).level3).toBe('boolean');
+    });
+    it('空对象测试', () => {
+        expect(() => Mock.object({})).toThrowError();
     });
 });

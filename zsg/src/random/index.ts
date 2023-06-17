@@ -14,8 +14,9 @@ import int from './int';
 import object from './object';
 import phone from './phone';
 import string from './string';
+import json2mock from './json2mock';
 
-export {
+export default {
     array,
     bool,
     char,
@@ -30,4 +31,5 @@ export {
     idCard,
     color,
     object,
+    json2mock,
 };
