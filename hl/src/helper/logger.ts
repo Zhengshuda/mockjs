@@ -18,6 +18,7 @@ const logMap = {
  */
 export function logger(key: string, message: string, type: 'error' | 'warn' | 'info' = 'info') {
     const config = getConfig();
+
     if (config.debugger) {
         logMap[type](`[${key}]: ${message}`);
     }

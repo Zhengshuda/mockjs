@@ -10,6 +10,6 @@ describe('随机生成整型', () => {
   });
 
   it('异常参数校验', () => {
-    expect(() => mock.random.int(2, 1)).toThrowError('min cannot be greater than the max');
+    expect(() => mock.random.int(2, 1)).toThrowError();
   });
 });

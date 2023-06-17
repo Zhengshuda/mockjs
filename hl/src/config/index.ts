@@ -1,6 +1,6 @@
 const config = {
     /** debugger 模式，拥有日志等系统 */
-    debugger: false,
+    debugger: true,
 };
 
 export function defineConfig(define: Partial<typeof config>) {

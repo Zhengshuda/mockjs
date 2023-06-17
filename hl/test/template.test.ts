@@ -13,8 +13,7 @@ describe('解析模板字符串', () => {
         return 'a' + param;
     });
     const ret = mock.template('@randomA(1)');
-    console.log('================', ret);
-    
+  
     expect(ret).equals('a1');
   });
 
