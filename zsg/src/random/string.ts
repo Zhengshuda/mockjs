@@ -8,7 +8,7 @@ import int from './int';
  * @param charset 字符集
  * @returns 字符串
  */
-export default function string(minLen = 0, maxLen = 10, charset?: string) {
+export default function string(charset?: string, minLen = 0, maxLen = 10) {
     const len = int(Math.max(minLen, 0), maxLen);
     let result = '';
 
