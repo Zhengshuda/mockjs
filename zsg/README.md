@@ -10,8 +10,6 @@
 yarn add @sxf/mockts
 ```
 
-
-
 ## How to use
 
 ### int
@@ -209,7 +207,8 @@ console.log(randomReg); // 符合所入参 json 格式的数据
 ```ts
 import Mock from '@sxf/mockts';
 
-const cutomGenerator = () => {...};
-const randomData = Mock.extend('customName', cutomGenerator);
-```
+const customGenerator = () => {...};
+const randomData = Mock.extend('customName', customGenerator);
 
+Mock.custom.customName(); // 调用自定义扩展的方法
+```
