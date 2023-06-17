@@ -27,7 +27,7 @@ FMock.mock({
     return param1 + ' ' + param2;
   },
   count: 3
-}
+})
 ```
 
 ### 生成随机值
@@ -36,7 +36,7 @@ FMock.mock({
 - 支撑生成特定格式：手机号（phone）
 - FMock.mock('@xxx|ruleStr') 方式调用，例如 FMock.mock('@string|min=10&max=40')
 - 通过 ruleStr传参，传参仿照 url 传参形式
-#### 字符串参数
+#### 字符串 参数
 
 - 生成指定长度的字符串
 - 限制字符串最小长度
@@ -48,7 +48,7 @@ FMock.mock({
 | max?: number | 最大长度，小于100 |
 | len?: number | 固定长度（优先级高） |
 
-#### 整数参数
+#### 整数 参数
 | 参数 | 描述 |
 | --- | --- |
 | min?: integer | 最短长度，大于1 |
