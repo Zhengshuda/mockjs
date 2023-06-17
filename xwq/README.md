@@ -7,76 +7,40 @@ import { Mock } from 'Mock';
 ```
 
 ## 创建随机的字符串
-Mock.mock('@string') // 创建随机字符串不限制长度
-Mock.mock('@string(5)') // 创建随机字符串限制长度
+Mock.getStr(len, 'A-Z || a-z || 0-9') // 创建自定义长度的随机字符串，包括大写字母，小写字母，以及数字
 
 ## 创建随机数字
-Mock.mock('@integer') // 创建随机的数字随机长度
-Mock.mock('@integer(60, 100)') // 创建60-100之间的随机数字
+Mock.getNum(len) // 创建随机长度的数字
 
 ## 创建随机的日期
-Mock.mock('@date') // 创建随机的日期
+Mock.getDate('yyyy-MM-dd' || 'yyyy/MM/dd') // 创建随机的日期,支持'yyyy-MM-dd','yyyy/MM/dd'这两种格式
 
 ## 创建随机的时间
-Mock.mock('@time') // 创建随机的时间
+Mock.getTime('HH:mm:ss' || 'HH/mm/ss') // 创建随机的时间, 支持'HH:mm:ss','HH/mm/ss'这两种格式
 
 ## 创建随机的身份证
-Mock.mock('@idCard') // 创建随机的身份证
+Mock.getIdCard() // 创建随机的身份证
 
 ## 创建随机的电话号码
-Mock.mock('@phone') // 创建随机的电话号码
+Mock.getPhone() // 创建随机的电话号码
 
-## 创建用户自定义的属性
-// 用户创建电话号码
-Mock.extend({
-    phone: function () {
-        var phonePrefixs = ['132', '135', '189'] // 自己写前缀哈
-        return this.pick(phonePrefixs) + Mock.mock(/\d{8}/) //Number()
-    }
-})
+## 创建随机的中文名字
+Mock.getCname() // 创建随机的中文名
 
 ## 创建用户自定义的对象
-// "string|1-10", 对象属性后面的数字表示创造的数量的范围
 
-Mock.mock({
-    "string|1-10": "★" ,
-    "number|+1": 202,
-    "boolean|1": true,
-    "object|2": {
-    "310000": "上海市",
-    "320000": "江苏省",
-    "330000": "浙江省",
-    "340000": "安徽省",
-    "array|1": [
-        "AMD",
-        "CMD",
-        "UMD"
-    ]
-  }
+Mock.getObj({
+  name: '111',
+  ...
 })
 
-## 校验真实数据 data 是否与数据模板 template 匹配。
-var template = {
-    name: 'value1'
-}
-var data = {
-    name: 'value2'
-}
-Mock.valid(template, data)
-// =>
-[
-    {
-        "path": [
-            "data",
-            "name"
-        ],
-        "type": "value",
-        "actual": "value2",
-        "expected": "value1",
-        "action": "equal to",
-        "message": "[VALUE] Expect ROOT.name'value is equal to value1, but is value2"
-    }
-]
+// 创建随机的对象，对象的值支持 getStr, getNum, getDate, getTime, getIdCard, getPhone, getCname, 对象的值如果不包括以上的值，则返回用户自己输入的值
+
+## 创建用户自定义的数组
+Mock.getArr([], len)
+
+// 创建随机的数组，第一个参数，数组的参数超过两个，则返回原数组，只有一个则匹配getStr, getNum, getDate, getTime, getIdCard, getPhone, getCname，这几个值，返回mock的对应数据，第二个参数对应随机mock的长度。如果不匹配以上类型，则返回原数组
+
 
 
 

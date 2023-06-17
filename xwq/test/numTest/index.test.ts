@@ -1,18 +1,12 @@
 import { it, expect } from 'vitest';
-import { getNum } from '../../src/number/index'
+import { Mock } from '../../src/index'
+const mock = new Mock()
 
-it('numTest1', () => {
-    const num = getNum('@integer()')
+it('numTest', () => {
+    const num = mock.getNum(6)
+    const len = num.toString() 
     expect(num).toBeTypeOf('number');
+    expect(len).toHaveLength(6);
 });
 
-it('numTest2', () => {
-    const num = getNum('@integer(1, 9)')
-    expect(num).toBeTypeOf('number');
-});
-
-it('numTest3', () => {
-    const num = getNum('@integer(9)')
-    expect(num).toBeTypeOf('number');
-});
 
