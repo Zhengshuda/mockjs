@@ -13,7 +13,7 @@ export default function tempalte(value: string) {
   }
   const opt = match[1];
   const args = match[2]
-    .split(',')
+    .split(',') 
     .filter(Boolean)
     .map(arg => (arg.match(/^\d+$/) ? Number(arg) : arg));
 
