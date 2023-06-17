@@ -1,5 +1,5 @@
 import { it, expect, describe } from 'vitest';
-import FMock from '../src/index';
+import FMock from '../../src/index';
 import template1 from './template1.json';
 import template2 from './template2.json';
 

@@ -1,8 +1,7 @@
 import { it, expect, describe } from 'vitest';
-import FMock from '../src/index';
-import { ARRAY_MAX_COUNT, ARRAY_MIN_COUNT } from 'src/utils/const';
+import FMock from '../../src/index';
+import { ARRAY_MAX_COUNT, ARRAY_MIN_COUNT } from '../../src/utils/array_const';
 const mock = FMock.mock;
-FMock.setEnv('NODE_ENV', 'development');
 
 describe('Normal function Test', () => {
   it('生成数组类型', () => {

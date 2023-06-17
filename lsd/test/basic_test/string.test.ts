@@ -1,6 +1,6 @@
 import { it, expect, describe } from 'vitest';
-import FMock from '../src/index';
-import { STRING_MAX_LEN, STRING_MIN_LEN } from '../src/utils/const';
+import FMock from '../../src/index';
+import { STRING_MAX_LEN, STRING_MIN_LEN } from '../../src/utils/string_const';
 
 const Mock = FMock.mock;
 

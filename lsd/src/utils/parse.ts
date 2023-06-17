@@ -1,19 +1,3 @@
-export function getType(obj: any) {
-  // Array
-  // Function（它的 typeof 返回 "function"）
-  // Error
-  // Boolean
-  // Number
-  // String
-  // Date
-  // RegExp
-  if(obj === null || obj === undefined) {
-    return String(obj);
-  }
-  let res = Object.prototype.toString.call(obj).match(/\[object (\w+)\]/);
-  return (res as RegExpMatchArray)[1]?.toLowerCase();
-}
-
 /**
  * 解析对象 的 key 和 value，转化为参数对象
  * @param key 

@@ -1,6 +1,7 @@
-import { mock } from "./index";
-import Random from "../random";
-import { ARRAY_DEFAULT_COUNT, ARRAY_MAX_COUNT, ARRAY_MIN_COUNT } from "../utils/const";
+import { mock } from "../mock/index";
+import Basic from "./index";
+import { ARRAY_DEFAULT_COUNT, ARRAY_MAX_COUNT, ARRAY_MIN_COUNT } from "../utils/array_const";
+import logger from "../utils/logger";
 
 interface arrayOpt {
   count?: number,
@@ -15,7 +16,7 @@ function getArrayCount(opt: arrayOpt) {
   let countVal = parseInt(count.toString(), 10);
   if(countVal < ARRAY_MIN_COUNT || countVal > ARRAY_MAX_COUNT) {
     countVal = ARRAY_DEFAULT_COUNT;
-    console.error(`count值无效，使用默认值${ARRAY_DEFAULT_COUNT}`);
+    logger.error(`count值无效，使用默认值${ARRAY_DEFAULT_COUNT}`);
   }
   if(typeof opt.min === 'undefined' && typeof opt.max === 'undefined') {
     return countVal;
@@ -24,20 +25,20 @@ function getArrayCount(opt: arrayOpt) {
   let minVal = parseInt(min.toString(), 10);
   if(minVal < ARRAY_MIN_COUNT) {
     minVal = ARRAY_DEFAULT_COUNT;
-    console.error(`最小值小于限制${ARRAY_MIN_COUNT}, 使用默认值${ARRAY_MIN_COUNT}`);
+    logger.error(`最小值小于限制${ARRAY_MIN_COUNT}, 使用默认值${ARRAY_MIN_COUNT}`);
   }
 
   let maxVal = parseInt(max.toString(), 10);
   if(maxVal > ARRAY_MAX_COUNT) {
     maxVal = ARRAY_MAX_COUNT;
-    console.error(`最大值大于限制${ARRAY_MAX_COUNT}, 使用默认值${ARRAY_MAX_COUNT}`);
+    logger.error(`最大值大于限制${ARRAY_MAX_COUNT}, 使用默认值${ARRAY_MAX_COUNT}`);
   }
   if(maxVal < minVal) {
     minVal = ARRAY_MIN_COUNT;
     maxVal = ARRAY_MAX_COUNT;
     console.error('传入的参数非法：min 大于 max，使用默认值');
   }
-  return Random.integer({
+  return Basic.integer({
     min: minVal,
     max: maxVal
   });
@@ -48,7 +49,7 @@ function getArrayCount(opt: arrayOpt) {
  * @param opt option
  * @returns result
  */
-const _dealArray = function(opt: arrayOpt) {
+const array = function(opt: arrayOpt) {
   // 参数处理
   const { raw = [] } = opt;
   if(raw.length === 0) return [];
@@ -72,4 +73,4 @@ const genArray = (raw: Array<any>) => {
   return RowRes;
 }
 
-export default _dealArray;
+export default array;

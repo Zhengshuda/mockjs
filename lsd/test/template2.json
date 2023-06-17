@@ -1,8 +1,0 @@
-{
-  "integer": "@integer",
-  "array1": [1, 2, 3],
-  "obj1": {
-    "phone": "@phone"
-  },
-  "count": 3
-}

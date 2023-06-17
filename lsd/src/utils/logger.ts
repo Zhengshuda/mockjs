@@ -1,9 +1,18 @@
-import { getEnv } from "../mock/env"
+import { getEnv } from "./env"
 
-const logger = (info: string): void => {
+const debug = (info: string): void => {
   if(getEnv('NODE_ENV') === 'development') {
     console.info(info);
   }
+}
+
+const error = (err: string): void => {
+  console.error(err);
+}
+
+const logger = {
+  debug,
+  error
 }
 
 export default logger;

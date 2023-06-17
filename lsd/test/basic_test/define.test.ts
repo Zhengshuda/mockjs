@@ -1,6 +1,5 @@
 import { it, expect, describe } from 'vitest';
-import FMock from '../src/index';
-FMock.setEnv('NODE_ENV', 'development');
+import FMock from '../../src/index';
 
 describe('define func type', () => {
   it('FMock.define type', () => {

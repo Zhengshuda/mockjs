@@ -1,5 +1,5 @@
 import { it, expect, describe } from 'vitest';
-import FMock from '../src/index';
+import FMock from '../../src/index';
 
 describe('function type', () => { 
   it('mock type', () => {
