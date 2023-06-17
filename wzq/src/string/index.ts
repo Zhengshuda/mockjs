@@ -1,8 +1,5 @@
-interface strInterFace {
-    input: 'A-Z' | 'a-z' | '0-9'
-}
+import {strInterFace} from '../const'
 
-// 创建随机字符串
 function createRandomChar(c: strInterFace["input"]) {
     switch (c) {
         case 'A-Z':
@@ -13,8 +10,9 @@ function createRandomChar(c: strInterFace["input"]) {
         default:
             return String.fromCharCode(Math.trunc(Math.random() * 10) + 48);
     }
-};
+}
 
+// 创建随机的字符串
 export function crateRandomString(length: number, val: strInterFace["input"]) {
     let str = '';
     for (let i = 0; i < length; i++) str += createRandomChar(val);

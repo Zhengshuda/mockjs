@@ -1,7 +1,4 @@
-interface dateFormat {
-    getDateFormat: "yyyy-MM-dd" | "yyyy/MM/dd"
-    getTimeFormat: "HH:mm:ss" | "HH/mm/ss"
-}
+import {dateFormat} from '../const'
 
 // 生成随机日期
 function randomDate() {
@@ -26,10 +23,12 @@ function formatDate(date: Date, format: dateFormat['getDateFormat']) {
     return String(date.getFullYear()) + '/' + month + '/' + day;
 }
 
+// 获取随机的日期
 export function getformatDate (format:dateFormat['getDateFormat']) {
     return formatDate(randomDate(), format)
 }
 
+// 获取随机的时间
 export function randomTime(format: dateFormat['getTimeFormat']) {
     const hourRandom = Math.round(Math.random() * 24)
     const minutesRandom = Math.round(Math.random() * 60)
@@ -37,10 +36,11 @@ export function randomTime(format: dateFormat['getTimeFormat']) {
     let hour: string | number = hourRandom < 10 ? '0' + hourRandom : '' + hourRandom;
     let minutes: string | number = minutesRandom < 10 ? '0' + minutesRandom : '' + minutesRandom;
     let seconds: string | number = secondsRandom < 10 ? '0' + secondsRandom : '' + secondsRandom;
+    let date = ''
     if (format === 'HH:mm:ss') {
-        return `${hour}:${minutes}:${seconds}`
+        date = `${hour}:${minutes}:${seconds}`
+    } else {
+        date = `${hour}/${minutes}/${seconds}`
     }
-    return `${hour}/${minutes}/${seconds}`
+    return date
 }
-
-

@@ -1,6 +1,3 @@
-interface MockObj {
-    [key: string]: any
-}
 import { createRandomNum } from '../number/index'
 import { getIdcard } from '../idCard/index'
 import { getformatDate, randomTime } from '../dateAndTime/index'
@@ -8,7 +5,9 @@ import { getMoble } from '../moble/index'
 import { createBoolen } from '../boolen/index';
 import { createArrary } from '../arrary/index'
 import { createName } from '../cname/index'
+import { MockObj } from '../const'
 
+// 创建随机的对象
 export function createObj(val: MockObj) {
     for (let key in val) {
         if (val[key] === 'number') {

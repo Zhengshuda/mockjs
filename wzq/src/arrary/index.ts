@@ -4,9 +4,11 @@ import { getformatDate, randomTime } from '../dateAndTime/index'
 import { getMoble } from '../moble/index'
 import { createBoolen } from '../boolen/index';
 import { createName } from '../cname/index'
+import { createObj } from "../obj/index";
+import { arrType } from "../const";
 
 
-export function createArrary(val: any, len: number) {
+export function createArrary(val: arrType['type'], len: number) {
     const arr: Array<any> = []
     for (let i = 0; i < len; i++) {
         if (typeof val === 'number') {
@@ -21,13 +23,19 @@ export function createArrary(val: any, len: number) {
             arr.push(getMoble())
         } else if (val === 'getBoolen') {
             arr.push(createBoolen())
-        } else if(val === 'getCname') {
+        } else if (val === 'getCname') {
             arr.push(createName())
         } else if (val instanceof Object) {
+            let obj = JSON.parse(JSON.stringify(val))
+            if (obj.id) {
+                delete obj.id
+            }
             arr.push({
                 id: i + 1,
-                ...val
+                ...createObj(obj)
             })
+        } else {
+            arr.push(val)
         }
     }
     return arr;
