@@ -1,4 +1,4 @@
-import formatDate from 'src/helper/formatDate';
+import formatDate from '../helper/formatDate';
 import timestamp from './timestamp';
 
 /**

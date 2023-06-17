@@ -5,5 +5,9 @@
  * @returns 随机生成的值
  */
 export default function int(min = Number.MIN_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER) {
+  if (min > max) {
+    throw new Error('[inte]: min cannot be greater than the max');
+  }
+
   return Math.round(Math.random() * (max - min)) + min;
 }
