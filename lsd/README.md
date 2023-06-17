@@ -1,9 +1,8 @@
 # feather-mock
-feather project homework
 ## 功能
 ### 数据模板
 FMock.mock(template);
-template中的每个属性由 3 部分构成：**属性名（**name**）、参数（**rule**）、属性值（**value）：
+template中的每个属性由 3 部分构成：**属性名（name ）、参数（rule）、属性值（value）**：
 ` 'name|rule': value `
 **注意：**
 
@@ -27,7 +26,7 @@ FMock.mock({
     return param1 + ' ' + param2;
   },
   count: 3
-}
+})
 ```
 
 ### 生成随机值
@@ -36,19 +35,20 @@ FMock.mock({
 - 支撑生成特定格式：手机号（phone）
 - FMock.mock('@xxx|ruleStr') 方式调用，例如 FMock.mock('@string|min=10&max=40')
 - 通过 ruleStr传参，传参仿照 url 传参形式
-#### 字符串参数
+#### 字符串 参数
 
 - 生成指定长度的字符串
 - 限制字符串最小长度
 - 限制字符串最大长度
 - 字符串长度应在1~100之间
+
 | 参数 | 描述 |
 | --- | --- |
 | min?: integer | 最短长度，大于1 |
 | max?: number | 最大长度，小于100 |
 | len?: number | 固定长度（优先级高） |
 
-#### 整数参数
+#### 整数 参数
 | 参数 | 描述 |
 | --- | --- |
 | min?: integer | 最短长度，大于1 |
