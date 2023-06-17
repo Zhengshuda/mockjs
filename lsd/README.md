@@ -1,9 +1,8 @@
 # feather-mock
-feather project homework
 ## 功能
 ### 数据模板
 FMock.mock(template);
-template中的每个属性由 3 部分构成：**属性名（**name**）、参数（**rule**）、属性值（**value）：
+template中的每个属性由 3 部分构成：**属性名（name ）、参数（rule）、属性值（value）**：
 ` 'name|rule': value `
 **注意：**
 
@@ -42,6 +41,7 @@ FMock.mock({
 - 限制字符串最小长度
 - 限制字符串最大长度
 - 字符串长度应在1~100之间
+
 | 参数 | 描述 |
 | --- | --- |
 | min?: integer | 最短长度，大于1 |
