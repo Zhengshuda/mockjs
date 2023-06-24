@@ -1,8 +1,5 @@
-interface strInterFace {
-    input: '0-9'
-}
+import { strInterFace } from '../const'
 
-// 创建随机字符串
 function createRandomChar(c: strInterFace["input"]) {
     return String.fromCharCode(Math.trunc(Math.random() * 10) + 48);
 };
@@ -13,7 +10,8 @@ function crateRandomString(length: number, val: strInterFace["input"]) {
     return str;
 }
 
-export function createRandomNum(len:number) {
-    return parseInt(crateRandomString(len, '0-9'));
+// 获取随机的数字
+export function createRandomNum(len: number) {
+    let num = parseInt(crateRandomString(len, '0-9'))
+    return num
 }
-

@@ -1,5 +1,4 @@
-// 随机身份证号码
-
 export function createBoolen() {
-    Math.round(Math.random()) === 0 ? false : true;
+    let boolen = Math.round(Math.random()) === 0 ? false : true
+    return boolen
 }

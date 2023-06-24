@@ -14,6 +14,7 @@ function cnNewID(idcard: string) {
     return arrValid[sum % 11];
 }
 
+// 获取随机的身份证
 export function getIdcard() {
     let idcard: any = '';
     for (let i = 0; i < 18; i++) {

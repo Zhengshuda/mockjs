@@ -2,7 +2,7 @@ import { it, expect } from 'vitest';
 import { Mock } from '../../src/index'
 const mock = new Mock()
 
-it('cnameTest', () => {
+it('随机身份证验证', () => {
     const name = mock.getCname()
     let len = name.length
     const reg = /^[\u4e00-\u9fa5]$/
